@@ -5,6 +5,8 @@ YOLOv8 昆虫検出モデル訓練スクリプト
 このスクリプトは、カスタム昆虫データセットを使用してYOLOv8モデルのファインチューニングを実行します。
 Roboflowデータセットを使用したカブトムシ検出に特化して設計されています。
 
+要件定義書: docs/insect_detection_application_test_project_requirements_spec.md
+
 使用方法:
     python train_yolo.py --data datasets/data.yaml --epochs 100
     python train_yolo.py --data datasets/data.yaml --epochs 50 --batch 16 --imgsz 640
@@ -39,7 +41,12 @@ except ImportError as e:
 
 
 def setup_logging():
-    """訓練プロセス用のログ設定を初期化します。"""
+    """
+    訓練プロセス用のログ設定を初期化します。
+
+    Returns:
+        logging.Logger: 設定済みのロガーインスタンス
+    """
     # 現在の日時を使用してユニークなログファイル名を生成
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_dir = Path("logs")
@@ -224,8 +231,8 @@ def validate_model(model, data_path):
         if hasattr(validation_results, 'box'):
             box_metrics = validation_results.box
             # mAP (mean Average Precision): 物体検出の主要指標
-            logger.info(f"mAP@0.5: {box_metrics.map50:.4f} (IoU闾値0.5での平均精度)")
-            logger.info(f"mAP@0.5:0.95: {box_metrics.map:.4f} (IoU闾値0.5-0.95での平均精度)")
+            logger.info(f"mAP@0.5: {box_metrics.map50:.4f} (IoU閾値0.5での平均精度)")
+            logger.info(f"mAP@0.5:0.95: {box_metrics.map:.4f} (IoU閾値0.5-0.95での平均精度)")
             # 精度と再現率: モデルの特性を表す指標
             logger.info(f"Precision: {box_metrics.mp:.4f} (精度: 正しい検出の割合)")
             logger.info(f"Recall: {box_metrics.mr:.4f} (再現率: 実際のオブジェクトを検出できた割合)")
@@ -273,10 +280,9 @@ def export_model(model, formats=None, project="weights", name="best_model"):
 
 def main():
     """
-    YOLOv8昆虫検出モデルの訓練を実行するメイン関数。
-    
-    この関数はコマンドライン引数を解析し、システムチェック、
-    データセット検証、モデル訓練、検証、エクスポートを順次実行します。
+    メイン関数：コマンドライン引数を処理してYOLOv8昆虫検出モデルの訓練を実行
+
+    システムチェック、データセット検証、モデル訓練、検証、エクスポートを順次実行します。
     """
     # コマンドライン引数のパーサーを作成
     parser = argparse.ArgumentParser(
