@@ -45,19 +45,27 @@ The system is designed to:
 ### 3.1 Directory Organization
 
 ```
-insect-detection-training/
+13-002-insect-detection-training/
 ├── 📁 Core Components
 │   ├── detect_insect.py               # Main detection script
 │   ├── train_yolo.py                  # Training script
+│   ├── setup_dataset.py               # Dataset setup script
+│   ├── book_integration.py            # Book integration utilities
 │   ├── yolov8_training_colab.ipynb   # Jupyter training notebook
 │   └── requirements.txt               # Python dependencies
 │
 ├── 📁 Configuration & Documentation
 │   ├── CLAUDE.md                      # Project rules and guidelines
 │   ├── README.md                      # Project documentation
-│   ├── system_specification.md       # Technical specifications
+│   ├── docs/                          # Documentation directory
+│   │   ├── README.md                  # Documentation index
+│   │   ├── system_specification.md   # Technical specifications
+│   │   └── setup_dataset_specification.md  # Dataset setup specification
 │   ├── LICENSE                        # Project license
 │   └── .gitignore                     # Git ignore rules
+│
+├── 📁 Dataset Setup (downloads/)
+│   └── *.zip                          # Downloaded dataset ZIP files
 │
 ├── 📁 Training Data (datasets/)
 │   ├── train/
@@ -150,6 +158,40 @@ insect-detection-training/
 - Batch processing capabilities
 - Bounding box visualization
 - Performance metrics logging
+
+#### 4.1.3 Dataset Setup Module (`setup_dataset.py`)
+**Purpose**: Extract manually downloaded dataset ZIP files and set up YOLOv8 directory structure
+
+**Key Features**:
+- Automatic ZIP file detection in `downloads/` directory
+- ZIP extraction to `datasets/` directory
+- YOLOv8 directory structure validation
+- Dataset statistics display (image counts)
+- Multiple ZIP file selection support
+
+**Technical Specifications**:
+- **Input**: ZIP file (Roboflow YOLOv8 format export)
+- **Output**: YOLOv8 directory structure (`datasets/`)
+- **Dependencies**: Python standard library only (no additional packages required)
+- **Specification Document**: `docs/setup_dataset_specification.md`
+
+**Command Line Parameters**:
+
+| Parameter | Short | Default | Description |
+|-----------|-------|---------|-------------|
+| `--downloads` | `-d` | `downloads` | ZIP file source directory |
+| `--output` | `-o` | `datasets` | Dataset extraction destination |
+| `--delete-zip` | - | False | Delete ZIP after extraction |
+
+**Usage**:
+```bash
+# Basic usage
+python3 setup_dataset.py
+
+# With options
+python3 setup_dataset.py --delete-zip
+python3 setup_dataset.py -d my_downloads -o my_datasets
+```
 
 ---
 
@@ -513,10 +555,31 @@ YYYY-MM-DD HH:MM:SS - LEVEL - MESSAGE
 1. Clone repository from GitHub
 2. Create Python virtual environment
 3. Install dependencies from requirements.txt
-4. Download and prepare dataset
+4. Download and prepare dataset (see 13.2)
 5. Verify system requirements
 
-### 13.2 Training Execution
+### 13.2 Dataset Setup
+```bash
+# 1. Download dataset from Roboflow (select YOLOv8 format)
+#    URL: https://universe.roboflow.com/z-algae-bilby/beetle/dataset/1
+
+# 2. Place downloaded ZIP file in downloads/ directory
+mv ~/Downloads/Beetle.v1i.yolov8.zip downloads/
+
+# 3. Run setup script
+python3 setup_dataset.py
+
+# Expected output:
+# - datasets/data.yaml
+# - datasets/train/images/ (400 files)
+# - datasets/train/labels/ (400 files)
+# - datasets/valid/images/ (50 files)
+# - datasets/valid/labels/ (50 files)
+# - datasets/test/images/ (50 files)
+# - datasets/test/labels/ (50 files)
+```
+
+### 13.3 Training Execution
 ```bash
 # Basic training command
 python train_yolo.py --data datasets/data.yaml --epochs 100
@@ -532,7 +595,7 @@ python train_yolo.py \
     --export
 ```
 
-### 13.3 Model Deployment
+### 13.4 Model Deployment
 1. Export trained model to ONNX format
 2. Optimize for target hardware platform
 3. Integrate with inference application
@@ -609,6 +672,6 @@ python train_yolo.py --data datasets/data.yaml --device cpu --batch 8
 
 ---
 
-*Document Version: 1.0*  
-*Last Updated: 2025-07-03*  
+*Document Version: 1.1*
+*Last Updated: 2025-12-25*
 *Contact: Development Team*

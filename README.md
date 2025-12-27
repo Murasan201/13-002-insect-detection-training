@@ -31,8 +31,8 @@ This project evaluates the capability of a YOLO model to detect insects in still
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Murasan201/insect-detection-training.git
-cd insect-detection-training
+git clone https://github.com/Murasan201/13-002-insect-detection-training.git
+cd 13-002-insect-detection-training
 ```
 
 ### 2. Create Virtual Environment
@@ -82,7 +82,7 @@ jupyter notebook yolov8_training_colab.ipynb
 
 ### Directory Structure
 ```
-insect-detection-training/
+13-002-insect-detection-training/
 ├── detect_insect.py          # Main detection script
 ├── requirements.txt          # Python dependencies
 ├── datasets/                 # Training datasets (excluded from Git)

@@ -30,7 +30,7 @@ results[0].show()
 ### With the complete detection script
 ```bash
 # Clone the companion repository
-git clone https://github.com/Murasan201/insect-detection-training
+git clone https://github.com/Murasan201/13-002-insect-detection-training
 
 # Download this model to weights/ directory
 # Run detection
@@ -72,7 +72,7 @@ If you use this model in your research or project, please cite:
 
 ## Companion Resources
 
-- **Full Code Repository**: https://github.com/Murasan201/insect-detection-training
+- **Full Code Repository**: https://github.com/Murasan201/13-002-insect-detection-training
 - **Training Notebook**: Available in the repository
 - **Book Chapter**: [Your Book Title] - Chapter X
 
@@ -108,4 +108,4 @@ This model is designed for:
 
 ## Model Card Contact
 
-For questions about this model, please open an issue in the [companion repository](https://github.com/Murasan201/insect-detection-training).
+For questions about this model, please open an issue in the [companion repository](https://github.com/Murasan201/13-002-insect-detection-training).

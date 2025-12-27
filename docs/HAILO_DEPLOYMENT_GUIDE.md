@@ -128,7 +128,7 @@ hailo fw-control identify
 ```bash
 # 訓練済み甲虫検出モデルを確実に用意
 # 現在のプロジェクトから: weights/best.pt
-cp /path/to/insect-detection-training/weights/best.pt ./
+cp /path/to/13-002-insect-detection-training/weights/best.pt ./
 ```
 
 #### 1.2 ONNX形式へのエクスポート
@@ -470,7 +470,7 @@ sudo hailo fw-control identify
 ## 📝 ライセンスと帰属
 
 このデプロイメントガイドは昆虫検出訓練プロジェクトの一部です。
-- **ベースプロジェクト**: [insect-detection-training](https://github.com/Murasan201/insect-detection-training)
+- **ベースプロジェクト**: [13-002-insect-detection-training](https://github.com/Murasan201/13-002-insect-detection-training)
 - **モデルライセンス**: AGPL-3.0（YOLOv8から継承）
 - **Hailoソフトウェア**: Hailoライセンス条件に準拠
 - **ドキュメントライセンス**: MIT

@@ -3,7 +3,7 @@
 ## Project Requirements
 
 ### Requirements Specification
-- **Project requirements are defined in**: `insect_detection_training_project_requirements_spec.md`
+- **Project requirements are defined in**: `docs/insect_detection_application_test_project_requirements_spec.md`
 - **MUST review this document before starting any work**
 - Contains detailed functional and non-functional requirements
 - Provides context for all development decisions
@@ -11,15 +11,23 @@
 ## Project Structure
 
 ```
-insect-detection-cpu-test/
+13-002-insect-detection-training/
 ├── detect_insect.py          # Main detection script
+├── train_yolo.py             # Training script
+├── setup_dataset.py          # Dataset setup script
+├── book_integration.py       # Book integration utilities
+├── yolov8_training_colab.ipynb # Colab training notebook
 ├── requirements.txt          # Python dependencies
 ├── .gitignore               # Git ignore rules
 ├── README.md                # Project documentation
-├── RULES.md                 # This file
+├── CLAUDE.md                # This file
+├── docs/                    # Documentation directory
+│   └── README.md            # Documentation index
+├── downloads/               # Downloaded ZIP files (not tracked)
+├── datasets/                # Extracted dataset (not tracked)
 ├── input_images/            # Input directory (not tracked)
 ├── output_images/           # Output directory (not tracked)
-├── logs/                    # Log files (not tracked)
+├── training_results/        # Training outputs (not tracked)
 └── weights/                 # Model weights (not tracked)
 ```
 
@@ -158,6 +166,42 @@ python detect_insect.py --input input_images/ --output output_images/
   - License considerations (CC BY 4.0 attribution requirements)
   - Repository efficiency (focus on code, not data)
 - Use external storage or download scripts for dataset distribution
+
+### Dataset Setup Script
+- **Script**: `setup_dataset.py`
+- **Specification**: `docs/setup_dataset_specification.md`
+- **Purpose**: Extract manually downloaded ZIP files and set up YOLOv8 directory structure
+
+#### Usage
+```bash
+# 1. Download dataset from Roboflow (YOLOv8 format)
+#    URL: https://universe.roboflow.com/z-algae-bilby/beetle/dataset/1
+
+# 2. Place ZIP file in downloads/ directory
+
+# 3. Run setup script
+python3 setup_dataset.py
+
+# Options
+python3 setup_dataset.py --help              # Show help
+python3 setup_dataset.py --delete-zip        # Delete ZIP after extraction
+python3 setup_dataset.py -d my_dir -o out    # Custom directories
+```
+
+#### Output Structure
+```
+datasets/
+├── data.yaml           # YOLOv8 configuration
+├── train/
+│   ├── images/         # Training images
+│   └── labels/         # Training labels (YOLO format)
+├── valid/
+│   ├── images/         # Validation images
+│   └── labels/         # Validation labels
+└── test/               # Optional
+    ├── images/
+    └── labels/
+```
 
 ### Ignored Files
 - **Model weights (*.pt, *.pth, *.onnx)** - Store in Hugging Face instead

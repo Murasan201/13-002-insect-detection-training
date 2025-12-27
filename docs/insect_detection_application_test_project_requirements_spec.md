@@ -148,7 +148,7 @@
 
 ### 10.3 Directory Structure (Actual Implementation)
 ```
-insect-detection-training/
+13-002-insect-detection-training/
 ├── datasets/
 │   ├── train/
 │   │   ├── images/            # 400 training images
