@@ -328,7 +328,7 @@ def main():
     
     # 訓練開始のヘッダーを表示
     logger.info("=" * 60)
-    logger.info("🐛 YOLOv8 昆虫検出モデル訓練スクリプト")
+    logger.info("YOLOv8 昆虫検出モデル訓練スクリプト")
     logger.info("=" * 60)
     
     # 訓練環境のシステム要件とライブラリバージョンをチェック
@@ -336,7 +336,7 @@ def main():
     
     # 指定されたデータセットの構造と内容を検証
     if not validate_dataset(args.data):
-        logger.error("⚠️ データセットの検証が失敗しました。パスやファイル構造を確認してください。")
+        logger.error("データセットの検証が失敗しました。パスやファイル構造を確認してください。")
         sys.exit(1)
     
     try:
@@ -361,14 +361,14 @@ def main():
             export_model(model, project="weights", name="beetle_detection_model")
         
         # 訓練パイプラインの成功をユーザーに報告
-        logger.info("🎉 訓練パイプラインが成功しました！")
-        logger.info(f"💾 モデル重みの保存先: {args.project}/{args.name}/weights/")
-        logger.info("📊 訓練結果を確認して、detect_insect.pyで推論をテストしてください！")
+        logger.info("訓練パイプラインが成功しました")
+        logger.info(f"モデル重みの保存先: {args.project}/{args.name}/weights/")
+        logger.info("訓練結果を確認して、detect_insect.pyで推論をテストしてください")
         
     except Exception as e:
         # 訓練中の予期しないエラーをログに記録して終了
-        logger.error(f"⚠️ 訓練パイプラインが予期しないエラーで失敗しました: {str(e)}")
-        logger.error("🔍 エラーの原因を確認し、データセットやパラメータを再確認してください")
+        logger.error(f"訓練パイプラインが予期しないエラーで失敗しました: {str(e)}")
+        logger.error("エラーの原因を確認し、データセットやパラメータを再確認してください")
         sys.exit(1)
 
 

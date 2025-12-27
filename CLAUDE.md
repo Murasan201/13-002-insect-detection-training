@@ -39,6 +39,7 @@
 - Use meaningful variable and function names
 - Include docstrings for all functions and classes
 - Maximum line length: 88 characters (Black formatter)
+- **NEVER use emojis in code, logs, or output messages** - Emojis can cause encoding errors in different environments
 
 ### File Naming
 - Use snake_case for Python files
