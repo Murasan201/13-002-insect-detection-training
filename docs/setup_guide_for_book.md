@@ -387,7 +387,7 @@ python train_yolo.py --data datasets/data.yaml --epochs 1 --batch 8 --device cpu
 
 ```
 ============================================================
-🐛 YOLOv8 昆虫検出モデル訓練スクリプト
+YOLOv8 昆虫検出モデル訓練スクリプト
 ============================================================
 Pythonバージョン: 3.10.12
 PyTorchバージョン: 2.9.1+cu128
@@ -416,7 +416,7 @@ YOLOv8訓練プロセスを開始します
 学習が進行すると、エポックごとの進捗が表示されます：
 
 ```
-Ultralytics 8.3.241 🚀 Python-3.10.12 torch-2.9.1+cu128 CPU
+Ultralytics 8.3.241 Python-3.10.12 torch-2.9.1+cu128 CPU
 Model summary: 129 layers, 3,011,043 parameters, 3,011,027 gradients, 8.2 GFLOPs
 
       Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
@@ -434,8 +434,8 @@ mAP@0.5: 0.5237 (IoU閾値0.5での平均精度)
 mAP@0.5:0.95: 0.2580 (IoU閾値0.5-0.95での平均精度)
 Precision: 0.9256 (精度: 正しい検出の割合)
 Recall: 0.1818 (再現率: 実際のオブジェクトを検出できた割合)
-🎉 訓練パイプラインが成功しました！
-💾 モデル重みの保存先: training_results/beetle_detection/weights/
+訓練パイプラインが成功しました
+モデル重みの保存先: training_results/beetle_detection/weights/
 ```
 
 **注意:** 1エポックのみの学習では精度が低いため、実際の運用では100エポック程度の学習を推奨します。
