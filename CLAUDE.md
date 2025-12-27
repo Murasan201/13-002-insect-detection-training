@@ -22,7 +22,8 @@
 ├── README.md                # Project documentation
 ├── CLAUDE.md                # This file
 ├── docs/                    # Documentation directory
-│   └── README.md            # Documentation index
+│   ├── README.md            # Documentation index
+│   └── setup_guide_for_book.md  # Setup guide for technical book
 ├── downloads/               # Downloaded ZIP files (not tracked)
 ├── datasets/                # Extracted dataset (not tracked)
 ├── input_images/            # Input directory (not tracked)
@@ -264,6 +265,20 @@ model_path = hf_hub_download(
 - Document installation steps
 - Provide usage examples
 - Include troubleshooting guide
+
+### Technical Book Documentation
+- **Setup Guide**: `docs/setup_guide_for_book.md`
+- **Purpose**: Technical book manuscript for environment setup instructions
+- **Language**: Written in Japanese for the target audience
+- **Scope**: Complete, step-by-step installation guide with no omissions
+- **Content Requirements**:
+  - System requirements and prerequisites
+  - Python environment setup (version, virtual environment)
+  - All dependency installations with exact commands
+  - Dataset preparation steps
+  - Model file acquisition from Hugging Face
+  - Verification procedures
+  - Troubleshooting common issues
 
 ## Information Search Guidelines
 
