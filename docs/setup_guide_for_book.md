@@ -8,7 +8,7 @@
 
 ## 本ガイドの目的
 
-（TODO: 記載予定）
+本ガイドでは、YOLOv8を使用した昆虫（カブトムシ）検出モデルの学習環境を構築する手順を解説します。Python仮想環境の作成から、必要なライブラリのインストール、データセットの準備、学習スクリプトの実行までを、実際のコマンドと出力例を交えて詳細に説明します。
 
 ## 動作環境
 
@@ -18,11 +18,33 @@
 
 ### 1. システム要件の確認
 
-（TODO: 記載予定）
+本プロジェクトを実行するには、以下の環境が必要です：
+
+- **OS**: Linux（Ubuntu 20.04以降推奨）またはmacOS
+- **CPU**: x86_64アーキテクチャ
+- **メモリ**: 8GB以上（16GB推奨）
+- **ディスク空き容量**: 10GB以上（PyTorchとデータセット用）
+- **ネットワーク**: インターネット接続（ライブラリダウンロード用）
 
 ### 2. Python環境の準備
 
-（TODO: 記載予定）
+Python 3.9以上がインストールされていることを確認します：
+
+```bash
+python3 --version
+```
+
+出力例：
+```
+Python 3.10.12
+```
+
+Pythonがインストールされていない場合は、以下のコマンドでインストールします：
+
+```bash
+sudo apt update
+sudo apt install python3 python3-venv python3-pip
+```
 
 ### 3. 仮想環境の作成
 
@@ -328,7 +350,20 @@ datasets/
 
 ### 6. モデルファイルの取得
 
-（TODO: 記載予定）
+学習スクリプトを実行すると、YOLOv8の事前学習モデル（yolov8n.pt）が自動的にダウンロードされます。手動でダウンロードする必要はありません。
+
+初回実行時に以下のようなメッセージが表示されます：
+
+```
+Downloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8n.pt to 'yolov8n.pt'...
+100% ━━━━━━━━━━━━ 6.2MB 4.7MB/s
+```
+
+**学習済みモデルについて：**
+
+本プロジェクトで学習したカブトムシ検出モデルは、Hugging Faceで公開されています：
+- URL: https://huggingface.co/Murasan/beetle-detection-yolov8
+- フォーマット: PyTorch (.pt)、ONNX (.onnx)
 
 ### 7. 動作確認
 
@@ -429,8 +464,44 @@ training_results/beetle_detection/
 
 ## トラブルシューティング
 
-（TODO: 記載予定）
+### pip install でエラーが発生する場合
+
+pipのバージョンが古い可能性があります。以下のコマンドでアップグレードしてください：
+
+```bash
+pip install --upgrade pip
+```
+
+### メモリ不足エラーが発生する場合
+
+バッチサイズを小さくして実行してください：
+
+```bash
+python train_yolo.py --data datasets/data.yaml --epochs 1 --batch 4 --device cpu
+```
+
+### 仮想環境が有効化されていない場合
+
+コマンド実行前に仮想環境を有効化してください：
+
+```bash
+source venv/bin/activate
+```
+
+プロンプトの先頭に`(venv)`が表示されていることを確認してください。
 
 ## 次のステップ
 
-（TODO: 記載予定）
+セットアップが完了したら、以下の操作が可能です：
+
+1. **本格的な学習の実行**: エポック数を増やして精度の高いモデルを学習
+   ```bash
+   python train_yolo.py --data datasets/data.yaml --epochs 100 --batch 16
+   ```
+
+2. **推論の実行**: 学習済みモデルで画像から昆虫を検出
+   ```bash
+   python detect_insect.py --input input_images/ --output output_images/
+   ```
+
+3. **モデルのエクスポート**: ONNX形式への変換など
