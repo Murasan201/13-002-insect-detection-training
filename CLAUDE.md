@@ -14,6 +14,7 @@
 13-002-insect-detection-training/
 ├── detect_insect.py          # Main detection script
 ├── train_yolo.py             # Training script
+├── train_yolo_full.py        # Fixed training script (DO NOT MODIFY)
 ├── setup_dataset.py          # Dataset setup script
 ├── book_integration.py       # Book integration utilities
 ├── yolov8_training_colab.ipynb # Colab training notebook
@@ -45,6 +46,26 @@
 - Use snake_case for Python files
 - Use descriptive names that indicate purpose
 - Avoid abbreviations unless commonly understood
+
+### Fixed Code Files (DO NOT MODIFY)
+
+The following files are verified and fixed - **modifications are strictly prohibited**:
+
+| File | Status | Description |
+|------|--------|-------------|
+| `train_yolo_full.py` | FIXED | Production-verified training script tested on actual hardware |
+
+**Rationale**:
+- Verified on actual hardware environment
+- Confirmed stable operation through real-world testing
+- Serves as reference implementation for training functionality
+- Any modifications may break verified functionality
+
+**Policy**:
+- DO NOT modify these files under any circumstances
+- For new features or changes, create a separate file
+- Use `train_yolo.py` for development and experimental changes
+- `train_yolo_full.py` remains as the stable, production-ready version
 
 ## Performance Requirements
 
